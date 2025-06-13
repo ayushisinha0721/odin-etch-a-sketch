@@ -7,3 +7,10 @@ for(let i = 0; i<256; i++) {
     container.appendChild(div);
 }
 
+const grids = document.querySelectorAll('.grid');
+grids.forEach(grid => {
+    grid.addEventListener("mouseover", () => {
+        grid.classList.add('hovered');
+        grid.style.background = "red";
+    })
+})
