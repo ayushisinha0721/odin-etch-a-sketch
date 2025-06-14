@@ -10,14 +10,28 @@ createNewGrid = (size) => {
     }
 }
 
+let squareNumber = 0.0;
+
 hoverOn = () => {
     const grids = document.querySelectorAll('.grid');
-grids.forEach(grid => {
-    grid.addEventListener("mouseover", () => {
-        grid.classList.add('hovered');
-        grid.style.background = "red";
+    grids.forEach(grid => {
+        grid.addEventListener("mouseover", () => {
+            let RColor = Math.floor(Math.random()*256);
+            let GColor = Math.floor(Math.random()*256);
+            let BColor = Math.floor(Math.random()*256);
+            grid.style.backgroundColor = `rgb(${RColor}, ${GColor}, ${BColor})`;
+            // grid.style.backgroundColor = "black";
+
+            if(squareNumber < 1.0) {
+                squareNumber += 0.1;
+                grid.style.opacity = squareNumber;
+            } else {
+                grid.style.opacity = 1.0;
+            }
+
+            grid.classList.add('hovered');
+        })
     })
-})
 }
 
 createNewGrid(16);
@@ -35,6 +49,7 @@ button.addEventListener("click", () => {
         return;
     }
     container.textContent = '';
+    squareNumber = 0.0;
     createNewGrid(size);
     hoverOn();
 })
